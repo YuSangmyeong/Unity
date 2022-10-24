@@ -9,10 +9,21 @@ public class Movement : MonoBehaviour
     public float p_speed = 10.0f;
     int count;
     public TextMeshProUGUI countText;
+    public TextMeshProUGUI missionText;
 
     void SetCountText()
     {
-        countText.text = "Count : " + count.ToString();
+        countText.text = "Score : " + count.ToString();
+        missionText.text = "Mission : " + "Clear";
+    }
+
+    void mission()
+    {
+        if (count == 5)
+        {
+            Debug.Log("Äù½ºÆ® ¿Ï·á");
+            missionText.gameObject.SetActive(true);
+        }
     }
 
     // Start is called before the first frame update
@@ -20,7 +31,9 @@ public class Movement : MonoBehaviour
     {
         count = 0;
         SetCountText();
+        mission();
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -50,6 +63,7 @@ public class Movement : MonoBehaviour
         count = count + 1;
         Debug.Log("count = " + count);
         SetCountText();
+        mission();
     }
 
     private void OnTriggerExit(Collider other)
